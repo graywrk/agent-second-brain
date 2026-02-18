@@ -1,59 +1,61 @@
 ---
 type: monthly
-period: YYYY-MM
-updated: YYYY-MM-DD
+period: 2025-03
+updated: 2025-02-18
 ---
 
-# Monthly Focus
+# Monthly Focus — Март 2025
 
 ## Top 3 Priorities
 
-### Priority 1: [Your Top Priority]
-<!-- What MUST happen this month? -->
+### Priority 1: Прочитать "Designing Data-Intensive Applications" целиком
 
-**Why it matters:** [connection to yearly goal]
+**Why it matters:** Фундамент для роста в архитектора. Q1 цель — прочитать Part I, но амбиция — закрыть всю книгу за месяц и получить фору.
 
 **Key Actions:**
-- [ ] Action 1
-- [ ] Action 2
-- [ ] Action 3
+- [ ] Выделить ежедневный блок 40–60 минут на чтение (time-block в календаре)
+- [ ] Читать ~18 страниц в день, вести конспект ключевых идей
+- [ ] Part I (главы 1–4) — до 10 марта
+- [ ] Part II (главы 5–9) — до 20 марта
+- [ ] Part III (главы 10–12) — до 31 марта
 
-**Definition of Done:** [clear outcome]
+**Definition of Done:** Книга прочитана полностью, есть конспект с ключевыми концепциями по каждой части.
 
 ---
 
-### Priority 2: [Second Priority]
+### Priority 2: Снизить вес на 4 кг
 
-**Why it matters:** [connection to yearly goal]
+**Why it matters:** Движение к цели 25% жира к концу года. Март — месяц, когда нужно разогнать процесс.
 
 **Key Actions:**
-- [ ] Action 1
-- [ ] Action 2
-- [ ] Action 3
+- [ ] Держать питание на уровне 1950 ккал/день
+- [ ] Силовые тренировки 2 раза в неделю (не пропускать)
+- [ ] Добавить кардио/бег 2–3 раза в неделю для увеличения дефицита
+- [ ] Взвешиваться каждое утро, отслеживать среднюю за неделю
 
-**Definition of Done:** [clear outcome]
+**Definition of Done:** Средний вес за последнюю неделю марта ≤96 кг.
 
 ---
 
-### Priority 3: [Third Priority]
+### Priority 3: Выложить услуги на фриланс-площадки и создать портфолио
 
-**Why it matters:** [connection to yearly goal]
+**Why it matters:** Первый шаг к поиску клиентов и заработку на IT-услугах по ИП. Без присутствия на площадках клиенты не появятся.
 
 **Key Actions:**
-- [ ] Action 1
-- [ ] Action 2
-- [ ] Action 3
+- [ ] Определить 1–2 ключевые услуги (боты, автоматизации, DevOps-консалтинг)
+- [ ] Создать 2–3 портфольных кейса (можно на основе пет-проектов и хобби)
+- [ ] Зарегистрироваться и оформить профили на FL.ru, Хабр Фриланс, Kwork
+- [ ] Опубликовать услуги, откликнуться на первые 5–10 заказов
 
-**Definition of Done:** [clear outcome]
+**Definition of Done:** Профили оформлены на минимум 2 площадках, услуги опубликованы, отправлены первые отклики.
 
 ---
 
 ## NOT Doing This Month
 
-<!-- What are you consciously saying NO to? -->
--
--
--
+- Не запускать SaaS — рано, сначала нужны клиенты и понимание рынка
+- Не брать новые кредиты или крупные покупки
+- Не менять систему тренировок кардинально — добавить бег, но не ломать силовые
 
 ---
 
@@ -61,10 +63,10 @@ updated: YYYY-MM-DD
 
 | Week | Progress | Blockers | Adjustments |
 |------|----------|----------|-------------|
-| W1 | | | |
-| W2 | | | |
-| W3 | | | |
-| W4 | | | |
+| W1 (3–9 мар) | | | |
+| W2 (10–16 мар) | | | |
+| W3 (17–23 мар) | | | |
+| W4 (24–31 мар) | | | |
 
 ---
 
@@ -92,4 +94,4 @@ updated: YYYY-MM-DD
 
 ---
 
-*Next Review: End of month*
+*Next Review: 31 марта 2025*
