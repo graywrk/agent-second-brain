@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "todoist": {
+    "singularity": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@doist/todoist-ai"]
+      "command": "node",
+      "args": ["mcp-servers/singularity/mcp.js", "--baseUrl", "https://api.singularity-app.com", "--accessToken", "${SINGULARITY_ACCESS_TOKEN}", "-n"]
     }
   }
 }

@@ -1,11 +1,11 @@
 ---
 name: second-brain-processor
-description: Personal assistant for processing daily voice/text entries from Telegram. Classifies content, creates Todoist tasks aligned with goals, saves thoughts to Obsidian with wiki-links, generates HTML reports. Triggers on /process command or daily 21:00 cron.
+description: Personal assistant for processing daily voice/text entries from Telegram. Classifies content, creates Singularity tasks aligned with goals, saves thoughts to Obsidian with wiki-links, generates HTML reports. Triggers on /process command or daily 21:00 cron.
 ---
 
 # Second Brain Processor
 
-Process daily entries → tasks (Todoist) + thoughts (Obsidian) + HTML report (Telegram).
+Process daily entries → tasks (Singularity) + thoughts (Obsidian) + HTML report (Telegram).
 
 ## CRITICAL: Output Format
 
@@ -29,24 +29,24 @@ CORRECT:
 
 ## MCP Tools Required
 
-mcp__todoist__add-tasks — Create tasks
-mcp__todoist__find-tasks — Check duplicates
-mcp__todoist__find-tasks-by-date — Check workload
+mcp__singularity__add-task — Create tasks
+mcp__singularity__find-tasks — Check duplicates
+mcp__singularity__find-tasks — Check workload
 
 ## CRITICAL: MCP Tool Usage
 
 **СНАЧАЛА ВЫЗОВИ TOOL. ПОТОМ ДУМАЙ.**
 
 У тебя ЕСТЬ доступ к MCP tools:
-- `mcp__todoist__add-tasks`
-- `mcp__todoist__find-tasks`
-- `mcp__todoist__find-tasks-by-date`
-- `mcp__todoist__complete-tasks`
-- `mcp__todoist__update-tasks`
+- `mcp__singularity__add-task`
+- `mcp__singularity__find-tasks`
+- `mcp__singularity__find-completed-tasks`
+- `mcp__singularity__complete-task`
+- `mcp__singularity__update-task`
 
 ### Обязательный алгоритм:
 
-1. ВЫЗОВИ: mcp__todoist__find-tasks-by-date
+1. ВЫЗОВИ: mcp__singularity__find-tasks
    ↓
    Получил результат? → Продолжай
    ↓
@@ -73,8 +73,8 @@ mcp__todoist__find-tasks-by-date — Check workload
 ## Processing Flow
 
 1. Load context — Read goals/3-weekly.md (ONE Big Thing), goals/2-monthly.md
-2. Check workload — find-tasks-by-date for 7 days
-3. **Check process goals** — find-tasks with labels: ["process-goal"]
+2. Check workload — find-tasks with date range for 7 days
+3. **Check process goals** — find-tasks with title containing "[process-goal]"
 4. Read daily — daily/YYYY-MM-DD.md
 5. Process entries — Classify → task or thought
 6. Build links — Connect notes with [[wiki-links]]
@@ -87,7 +87,7 @@ mcp__todoist__find-tasks-by-date — Check workload
 **ОБЯЗАТЕЛЬНО выполни при каждом /process:**
 
 ### 1. Проверь существующие process goals
-Используй mcp__todoist__find-tasks с labels: ["process-goal"]
+Используй mcp__singularity__find-tasks с поиском по "[process-goal]" в заголовке
 
 ### 2. Если отсутствуют — создай
 Читай goals/ и генерируй process commitments:
@@ -183,7 +183,7 @@ Types: [voice], [text], [forward from: Name], [photo]
 
 ## Classification
 
-task → Todoist (see references/todoist.md)
+task → Singularity (see references/singularity.md)
 idea/reflection/learning → thoughts/ (see references/classification.md)
 
 ## Priority Rules
@@ -296,7 +296,7 @@ Max length: 4096 characters.
 Read these files as needed:
 - references/about.md — User profile, decision filters
 - references/classification.md — Entry classification rules
-- references/todoist.md — Task creation details
+- references/singularity.md — Task creation details
 - references/goals.md — Goal alignment logic
 - references/process-goals.md — Process vs outcome goals, transformation patterns
 - references/links.md — Wiki-links building

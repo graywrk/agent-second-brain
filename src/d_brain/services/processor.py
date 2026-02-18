@@ -17,9 +17,9 @@ DEFAULT_TIMEOUT = 1200  # 20 minutes
 class ClaudeProcessor:
     """Service for triggering Claude Code processing."""
 
-    def __init__(self, vault_path: Path, todoist_api_key: str = "") -> None:
+    def __init__(self, vault_path: Path, singularity_access_token: str = "") -> None:
         self.vault_path = Path(vault_path)
-        self.todoist_api_key = todoist_api_key
+        self.singularity_access_token = singularity_access_token
         self._mcp_config_path = (self.vault_path.parent / "mcp-config.json").resolve()
 
     def _load_skill_content(self) -> str:
@@ -33,9 +33,9 @@ class ClaudeProcessor:
             return skill_path.read_text()
         return ""
 
-    def _load_todoist_reference(self) -> str:
-        """Load Todoist reference for inclusion in prompt."""
-        ref_path = self.vault_path / ".claude/skills/dbrain-processor/references/todoist.md"
+    def _load_singularity_reference(self) -> str:
+        """Load Singularity reference for inclusion in prompt."""
+        ref_path = self.vault_path / ".claude/skills/dbrain-processor/references/singularity.md"
         if ref_path.exists():
             return ref_path.read_text()
         return ""
@@ -154,12 +154,12 @@ week: {year}-W{week:02d}
 {skill_content}
 === END SKILL ===
 
-ПЕРВЫМ ДЕЛОМ: вызови mcp__todoist__user-info чтобы убедиться что MCP работает.
+ПЕРВЫМ ДЕЛОМ: вызови mcp__singularity__user-info чтобы убедиться что MCP работает.
 
 CRITICAL MCP RULE:
-- ТЫ ИМЕЕШЬ ДОСТУП к mcp__todoist__* tools — ВЫЗЫВАЙ ИХ НАПРЯМУЮ
+- ТЫ ИМЕЕШЬ ДОСТУП к mcp__singularity__* tools — ВЫЗЫВАЙ ИХ НАПРЯМУЮ
 - НИКОГДА не пиши "MCP недоступен" или "добавь вручную"
-- Для задач: вызови mcp__todoist__add-tasks tool
+- Для задач: вызови mcp__singularity__add-tasks tool
 - Если tool вернул ошибку — покажи ТОЧНУЮ ошибку в отчёте
 
 CRITICAL OUTPUT FORMAT:
@@ -170,10 +170,10 @@ CRITICAL OUTPUT FORMAT:
 - If entries already processed, return status report in same HTML format"""
 
         try:
-            # Pass TODOIST_API_KEY to Claude subprocess
+            # Pass SINGULARITY_ACCESS_TOKEN to Claude subprocess
             env = os.environ.copy()
-            if self.todoist_api_key:
-                env["TODOIST_API_KEY"] = self.todoist_api_key
+            if self.singularity_access_token:
+                env["SINGULARITY_ACCESS_TOKEN"] = self.singularity_access_token
 
             result = subprocess.run(
                 [
@@ -239,7 +239,7 @@ CRITICAL OUTPUT FORMAT:
         today = date.today()
 
         # Load context
-        todoist_ref = self._load_todoist_reference()
+        singularity_ref = self._load_singularity_reference()
         session_context = self._get_session_context(user_id)
 
         prompt = f"""Ты - персональный ассистент d-brain.
@@ -248,14 +248,14 @@ CONTEXT:
 - Текущая дата: {today}
 - Vault path: {self.vault_path}
 
-{session_context}=== TODOIST REFERENCE ===
-{todoist_ref}
+{session_context}=== SINGULARITY REFERENCE ===
+{singularity_ref}
 === END REFERENCE ===
 
-ПЕРВЫМ ДЕЛОМ: вызови mcp__todoist__user-info чтобы убедиться что MCP работает.
+ПЕРВЫМ ДЕЛОМ: вызови mcp__singularity__user-info чтобы убедиться что MCP работает.
 
 CRITICAL MCP RULE:
-- ТЫ ИМЕЕШЬ ДОСТУП к mcp__todoist__* tools — ВЫЗЫВАЙ ИХ НАПРЯМУЮ
+- ТЫ ИМЕЕШЬ ДОСТУП к mcp__singularity__* tools — ВЫЗЫВАЙ ИХ НАПРЯМУЮ
 - НИКОГДА не пиши "MCP недоступен" или "добавь вручную"
 - Если tool вернул ошибку — покажи ТОЧНУЮ ошибку в отчёте
 
@@ -271,13 +271,13 @@ CRITICAL OUTPUT FORMAT:
 
 EXECUTION:
 1. Analyze the request
-2. Call MCP tools directly (mcp__todoist__*, read/write files)
+2. Call MCP tools directly (mcp__singularity__*, read/write files)
 3. Return HTML status report with results"""
 
         try:
             env = os.environ.copy()
-            if self.todoist_api_key:
-                env["TODOIST_API_KEY"] = self.todoist_api_key
+            if self.singularity_access_token:
+                env["SINGULARITY_ACCESS_TOKEN"] = self.singularity_access_token
 
             result = subprocess.run(
                 [
@@ -329,12 +329,12 @@ EXECUTION:
 
         prompt = f"""Сегодня {today}. Сгенерируй недельный дайджест.
 
-ПЕРВЫМ ДЕЛОМ: вызови mcp__todoist__user-info чтобы убедиться что MCP работает.
+ПЕРВЫМ ДЕЛОМ: вызови mcp__singularity__user-info чтобы убедиться что MCP работает.
 
 CRITICAL MCP RULE:
-- ТЫ ИМЕЕШЬ ДОСТУП к mcp__todoist__* tools — ВЫЗЫВАЙ ИХ НАПРЯМУЮ
+- ТЫ ИМЕЕШЬ ДОСТУП к mcp__singularity__* tools — ВЫЗЫВАЙ ИХ НАПРЯМУЮ
 - НИКОГДА не пиши "MCP недоступен" или "добавь вручную"
-- Для выполненных задач: вызови mcp__todoist__find-completed-tasks tool
+- Для выполненных задач: вызови mcp__singularity__find-completed-tasks tool
 - Если tool вернул ошибку — покажи ТОЧНУЮ ошибку в отчёте
 
 WORKFLOW:
@@ -352,8 +352,8 @@ CRITICAL OUTPUT FORMAT:
 
         try:
             env = os.environ.copy()
-            if self.todoist_api_key:
-                env["TODOIST_API_KEY"] = self.todoist_api_key
+            if self.singularity_access_token:
+                env["SINGULARITY_ACCESS_TOKEN"] = self.singularity_access_token
 
             result = subprocess.run(
                 [
